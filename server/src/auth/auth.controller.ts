@@ -1,12 +1,14 @@
-import { Controller } from '@nestjs/common';
-import { UserRepository } from './user.repository';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Body, Controller, Post } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { AuthSignUpDto } from './dto/auth-signup.dto';
 
 @Controller('auth')
 export class AuthController {
-    constructor(
-        @InjectRepository(UserRepository)
-        private userRepository : UserRepository
-    ){}
+    constructor(private authService:AuthService){}
 
+    //Sign up new user
+    @Post('/signup')
+    signUp(@Body() authSignUpDto : AuthSignUpDto): Promise<void> {
+        return this.authService.signUp(authSignUpDto)
+    }
 }
