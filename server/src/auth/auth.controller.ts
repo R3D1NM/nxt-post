@@ -5,7 +5,7 @@ import { Logger } from '@nestjs/common';
 import { AuthCredentialDto } from './dto/auth-credential.dto';
 import { GetUser } from './getUser.decorator';
 import { User } from 'src/entity/user.entity';
-import { JwtAuthGuard } from './jwt-auth.guard';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -27,7 +27,7 @@ export class AuthController {
     }
 
     @Get('/validate')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard('jwt'))
     validate(@GetUser() user:User): User{
         return user
     }

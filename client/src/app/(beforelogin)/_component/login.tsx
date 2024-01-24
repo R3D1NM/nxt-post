@@ -4,12 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import SignUp from "./signup";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState(null);
     const [signup, setSignup] = useState(false)
+    const router = useRouter()
 
     const onLogin = (e) =>{
         e.preventDefault();
@@ -22,7 +24,7 @@ export default function Login() {
         axios.post('/api/auth/login',payload,{withCredentials:true})
         .then((res)=>{
             console.log(res);
-            
+            router.replace('/main')
         })
         .catch((err)=>{
             console.log(err);
