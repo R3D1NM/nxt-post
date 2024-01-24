@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthSignUpDto } from './dto/auth-signup.dto';
 
@@ -8,6 +8,7 @@ export class AuthController {
 
     //Sign up new user
     @Post('/signup')
+    @UsePipes(ValidationPipe)
     signUp(@Body() authSignUpDto : AuthSignUpDto): Promise<void> {
         return this.authService.signUp(authSignUpDto)
     }
