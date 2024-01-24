@@ -1,7 +1,7 @@
-import Main from "./(beforelogin)/_component/main";
+import Landing from "./(beforelogin)/_component/landing";
 
 export default function Home() {
   return (
-    <Main/>
+    <Landing/>
   );
 }
