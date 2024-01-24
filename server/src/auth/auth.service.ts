@@ -21,7 +21,7 @@ export class AuthService {
     }
 
     //User Login
-    async login(authCredentialDto : AuthCredentialDto): Promise<{accessToken:string}>{
+    async login(authCredentialDto : AuthCredentialDto, res:any): Promise<{result: string,accessToken:string}>{
         const {username,password} = authCredentialDto
         const user = await this.userRepository.findOneBy({username})
         
@@ -30,7 +30,8 @@ export class AuthService {
             const payload = {username}
             const accessToken = await this.jwtService.sign(payload)
             Logger.log(`${username} logged in`)
-            return {accessToken}
+            res.cookie('token',accessToken,{path: '/', expires: new Date(Date.now()+10000)})
+            return {result:"success",accessToken}
         } else {
             throw new UnauthorizedException("Login Failed")
         }
