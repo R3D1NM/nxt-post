@@ -13,7 +13,7 @@ export default function Login() {
     const [signup, setSignup] = useState(false)
 
     const onLogin = (e) =>{
-        e.preventDefault()
+        e.preventDefault();
         const payload = {
             username,
             password,

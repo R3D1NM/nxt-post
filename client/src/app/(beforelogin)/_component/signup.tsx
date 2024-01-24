@@ -7,7 +7,7 @@ export default function SignUp(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState([]);
 
     const onSignup = async (e) =>{
         e.preventDefault()
@@ -24,7 +24,8 @@ export default function SignUp(props) {
             
         })
         .catch((err)=>{
-
+            console.log(err.response.data.message);
+            setMessage(err.response.data.message)
         })
     }
 
@@ -51,13 +52,20 @@ export default function SignUp(props) {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" required value={password} onChange={(e)=>setPassword(e.target.value)}/>
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-                <Form.Control.Feedback type="invalid" >
-                    {message?<p>{message}</p>:null}
-                </Form.Control.Feedback>
+                <div className="tw-flex tw-flex-col tw-justify-between">
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                    <div className="tw-pr-2">
+                        {message.map((msg => {
+                            return <small className="tw-text-red-600">
+                                {msg} <br/>
+                            </small>
+                        }))}
+                    </div>
+                </div>
             </Form>
+
             </Modal.Body>
         </Modal>
 
