@@ -1,7 +1,7 @@
 export default function Main() {
     return (
         <div>
-        <p>Hello!</p>
+        <h1 className="tw-text-blue-200">Hello!</h1>
         </div>
     );
 }

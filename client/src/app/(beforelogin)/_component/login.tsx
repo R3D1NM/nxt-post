@@ -6,9 +6,8 @@ import { Button, Form } from "react-bootstrap";
 import SignUp from "./signup";
 
 export default function Login() {
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
-    const [email, setEmail] = useState();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [message, setMessage] = useState();
     const [signup, setSignup] = useState(false)
 
@@ -16,16 +15,17 @@ export default function Login() {
         e.preventDefault();
         const payload = {
             username,
-            password,
-            email
+            password
         }
 
-        axios.post('/api/auth/login',payload)
+        axios.post('/api/auth/login',payload,{withCredentials:true})
         .then((res)=>{
-
+            console.log(res);
+            
         })
         .catch((err)=>{
-
+            console.log(err);
+            
         })
     }
 
@@ -33,16 +33,14 @@ export default function Login() {
     <Form onSubmit={onLogin} className="tw-bg-black tw-bg-opacity-20 tw-rounded-md tw-p-5">
         <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Username</Form.Label>
-            <Form.Control type="text" placeholder="Username" required/>
+            <Form.Control type="text" placeholder="Username" required value={username} onChange={(e)=>setUsername(e.target.value)}/>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" required/>
+            <Form.Control type="password" placeholder="Password" required value={password} onChange={(e)=>setPassword(e.target.value)}/>
         </Form.Group>
-        <Form.Control.Feedback type="invalid" >
-            {message?<p>{message}</p>:null}
-        </Form.Control.Feedback>
+
         <div className="tw-flex tw-place-content-between">
             <Button variant="disable" type="submit" style={{backgroundColor:"#f8f9fa"}}>
                 Login

@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { AuthSignUpDto } from './dto/auth-signup.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from './user.repository';
@@ -24,9 +24,12 @@ export class AuthService {
     async login(authCredentialDto : AuthCredentialDto): Promise<{accessToken:string}>{
         const {username,password} = authCredentialDto
         const user = await this.userRepository.findOneBy({username})
+        
+        
         if(user&& (await bcrypt.compare(password,user.password))){
             const payload = {username}
             const accessToken = await this.jwtService.sign(payload)
+            Logger.log(`${username} logged in`)
             return {accessToken}
         } else {
             throw new UnauthorizedException("Login Failed")

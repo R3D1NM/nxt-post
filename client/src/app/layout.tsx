@@ -17,7 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="tw-h-[100vh] tw-w-[100vw] tw-flex tw-justify-center">
+        {children}
+        </div>
+      </body>
     </html>
   );
 }
