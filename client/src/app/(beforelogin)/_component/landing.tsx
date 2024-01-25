@@ -1,6 +1,4 @@
 "use client";
-import axios from "axios";
-import { useState } from "react";
 import Login from "./login";
 export default function Landing() {
 

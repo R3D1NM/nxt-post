@@ -21,7 +21,7 @@ export default function Login() {
             password
         }
 
-        axios.post('/api/auth/login',payload,{withCredentials:true})
+        axios.post('/api/auth/login',payload)
         .then((res)=>{
             console.log(res);
             router.replace('/main')
