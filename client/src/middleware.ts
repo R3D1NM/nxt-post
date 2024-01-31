@@ -18,6 +18,8 @@ export async function middleware(request: NextRequest) {
     }
     
     if (!cookie) {
+        console.log("No Cookie Detected");
+        
         return NextResponse.redirect(new URL('/', request.url))
     }
 

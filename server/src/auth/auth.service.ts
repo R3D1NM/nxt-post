@@ -29,8 +29,10 @@ export class AuthService {
         if(user&& (await bcrypt.compare(password,user.password))){
             const payload = {username}
             const accessToken = await this.jwtService.sign(payload)
+            const expirationTime = new Date();
+            expirationTime.setHours(expirationTime.getHours() + 2);
             Logger.log(`${username} logged in`)
-            res.cookie('token',accessToken,{path: '/', expires: new Date(Date.now()+10000)})
+            res.cookie('token',accessToken,{path: '/', expires: expirationTime})
             return {result:"success",accessToken}
         } else {
             throw new UnauthorizedException("Login Failed")
