@@ -1,5 +1,5 @@
 import { ConflictException, Injectable, InternalServerErrorException, Logger } from "@nestjs/common";
-import { User } from "src/entity/user.entity";
+import User from "src/entity/user.entity";
 import { DataSource, Repository } from "typeorm";
 import { AuthSignUpDto } from "./dto/auth-signup.dto";
 import * as bcrypt from 'bcrypt';

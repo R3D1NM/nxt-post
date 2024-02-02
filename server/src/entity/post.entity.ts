@@ -1,10 +1,10 @@
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./user.entity";
+import User from "./user.entity";
 import { PostStatus } from "src/post/post.enum";
 
 
 @Entity()
-export class Post extends BaseEntity {
+export default class Post extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

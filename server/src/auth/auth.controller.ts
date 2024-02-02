@@ -4,7 +4,7 @@ import { AuthSignUpDto } from './dto/auth-signup.dto';
 import { Logger } from '@nestjs/common';
 import { AuthCredentialDto } from './dto/auth-credential.dto';
 import { GetUser } from './getUser.decorator';
-import { User } from 'src/entity/user.entity';
+import User from 'src/entity/user.entity';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')

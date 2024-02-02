@@ -10,8 +10,14 @@ export default function PostCreate() {
     const [message, setMessage] = useState(null)
     const [username, setUsername] = useState("")
     
-    const onPost = async () =>{
-
+    const onPost = async (e) =>{
+        e.preventDefault()
+        const payload = {
+            title,
+            content,
+            status
+        }
+        
     }
 
     return (

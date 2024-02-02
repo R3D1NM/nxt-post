@@ -1,9 +1,9 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { Post } from "./post.entity";
+import Post  from "./post.entity";
 
 
 @Entity() @Unique(['username'])
-export class User extends BaseEntity {
+export default class User extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -16,6 +16,6 @@ export class User extends BaseEntity {
     @Column()
     email: string;
 
-    @OneToMany(()=> Post, post => post.user, {eager:true})
+    @OneToMany(()=> Post, post => post.user, {eager:false})
     posts: Post[]
 }
